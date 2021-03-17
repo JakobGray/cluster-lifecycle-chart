@@ -1,6 +1,6 @@
 # Copyright Contributors to the Open Cluster Management project
 
-CHART_NAME ?= cluster-lifecycle
+CHART_NAME ?= cluster-liecycle
 STABLE_CHART ?= stable/$(CHART_NAME)
 
 SHELL := /bin/bash
@@ -22,10 +22,3 @@ build: lint
 	@echo "BUILD CHART_NAME: $(CHART_NAME)"
 	@echo "BUILD CHART_VERSION: 99.99.99"
 	helm package --version 99.99.99 $(STABLE_CHART) -d $(STABLE_BUILD_DIR)
-
-
-.PHONY: tool
-## Download helm for linting and packaging
-tool:
-	#curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
-	curl -fksSL https://get.helm.sh/helm-v3.2.4-linux-amd64.tar.gz | sudo tar --strip-components=1 -xvz -C /usr/local/bin/ linux-amd64/helm
