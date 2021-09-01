@@ -289,8 +289,8 @@ clusterlifecycleStateMetrics:
 
 global:
   useShaManifest: true
-  imagePullPolicy: IfNotPresent
-  imagePullSecret: null
+  pullPolicy: IfNotPresent
+  pullSecret: null
   imageRepository: "quay.io/open-cluster-management"
   imageOverrides:
     managedcluster_import_controller: "quay.io/open-cluster-management/managedcluster-import-controller:2.3.0"

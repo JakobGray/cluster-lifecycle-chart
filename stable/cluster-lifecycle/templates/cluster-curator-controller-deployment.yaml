@@ -26,9 +26,9 @@ spec:
         name: {{ .Values.ClusterCuratorController.name }}
         ocm-antiaffinity-selector: "cluster-curator-controller"
     spec:
-      {{- if .Values.global.imagePullSecret }}
+      {{- if .Values.global.pullSecret }}
       imagePullSecrets:
-        - name: {{ .Values.global.imagePullSecret }}
+        - name: {{ .Values.global.pullSecret }}
       {{- end }}
       {{- with .Values.clusterCuratorAffinity }}
       affinity:
@@ -59,7 +59,7 @@ spec:
               fieldPath: metadata.name
         - name: IMAGE_URI
           value: "{{ .Values.global.imageOverrides.cluster_curator_controller }}"
-        imagePullPolicy: "{{ .Values.global.imagePullPolicy }}"
+        imagePullPolicy: "{{ .Values.global.pullPolicy }}"
         name: {{ .Values.ClusterCuratorController.name }}
         securityContext:
           allowPrivilegeEscalation: false

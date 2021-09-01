@@ -43,9 +43,9 @@ spec:
         productVersion: 2.1.0
         scheduler.alpha.kubernetes.io/critical-pod: ''
     spec:
-    {{- if .Values.global.imagePullSecret }}
+    {{- if .Values.global.pullSecret }}
       imagePullSecrets:
-        - name: {{ .Values.global.imagePullSecret }}
+        - name: {{ .Values.global.pullSecret }}
     {{- end }}
       serviceAccountName: {{ .Values.klusterletAddonController.name }}-v2
       hostNetwork: false
@@ -68,7 +68,7 @@ spec:
       containers:
       - name: klusterlet-addon-controller
         image: "{{ .Values.global.imageOverrides.klusterlet_addon_controller }}"
-        imagePullPolicy: {{ .Values.global.imagePullPolicy }}
+        imagePullPolicy: {{ .Values.global.pullPolicy }}
         securityContext:
           allowPrivilegeEscalation: false
           capabilities:
@@ -89,7 +89,7 @@ spec:
           - name: USE_SHA_MANIFEST
             value: "{{ .Values.global.useShaManifest }}"
           - name: DEFAULT_IMAGE_PULL_SECRET
-            value: {{ .Values.global.imagePullSecret }}
+            value: {{ .Values.global.pullSecret }}
           - name: DEFAULT_IMAGE_REGISTRY
             value: {{ .Values.global.imageRepository }}
           - name: ADDON_CLUSTERROLE_PREFIX

@@ -26,9 +26,9 @@ spec:
         name: {{ .Values.ClusterClaimsController.name }}
         ocm-antiaffinity-selector: "clusterclaims-controller"
     spec:
-      {{- if .Values.global.imagePullSecret }}
+      {{- if .Values.global.pullSecret }}
       imagePullSecrets:
-        - name: {{ .Values.global.imagePullSecret }}
+        - name: {{ .Values.global.pullSecret }}
       {{- end }}
       {{- with .Values.clusterClaimsAffinity }}
       affinity:
@@ -58,7 +58,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.name
-        imagePullPolicy: "{{ .Values.global.imagePullPolicy }}"
+        imagePullPolicy: "{{ .Values.global.pullPolicy }}"
         name: {{ .Values.ClusterClaimsController.name }}
         securityContext:
           allowPrivilegeEscalation: false
@@ -78,7 +78,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.name
-        imagePullPolicy: "{{ .Values.global.imagePullPolicy }}"
+        imagePullPolicy: "{{ .Values.global.pullPolicy }}"
         name: {{ .Values.ClusterpoolsDeleteController.name }}
         securityContext:
           allowPrivilegeEscalation: false
